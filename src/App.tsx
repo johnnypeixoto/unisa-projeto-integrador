@@ -1,30 +1,62 @@
 import React, { useState, useEffect, use } from "react";
+import marioLevelCompleteSound from "./assets/mario_level_complete.mp3";
+import marioCoinSound from "./assets/mario_coin.mp3";
+import marioGameOverSound from "./assets/mario_game_over.mp3";
+import marioStartSound from "./assets/mario_start.mp3";
 import "./App.css";
 
 function App() {
-  const [remainingTime, setRemainingTime] = useState(25 * 60); // 25 minutes in seconds
+  const [remainingTime, setRemainingTime] = useState(1 * 60); // 25 minutes in seconds
   const [isRunning, setIsRunning] = useState(false);
   const [isBreak, setIsBreak] = useState(false);
   const [encouragement, setEncouragement] = useState("");
+  const [branchText, setBranchText] = useState("");
+  const marioLevelComplete = new Audio(marioLevelCompleteSound);
+  const marioCoin = new Audio(marioCoinSound);
+  const marioGameOver = new Audio(marioGameOverSound);
+  const marioStart = new Audio(marioStartSound);
 
   const cheerMessages = [
-    "Você está indo muito bem! Continue assim e alcance seus objetivos diários.",
-    "Cada minuto conta! Mantenha o foco e veja o progresso acontecer.",
-    "Lembre-se: pequenas pausas levam a grandes conquistas. Você consegue!",
-    "Seu esforço hoje constrói o sucesso de amanhã. Continue firme!",
-    "A disciplina é o caminho para a liberdade. Mantenha-se no curso!",
-    "Você é capaz de coisas incríveis. Acredite em si mesmo e vá em frente!",
-    "O sucesso é a soma de pequenos esforços repetidos dia após dia. Continue!",
+    "Tá indo bem demais! Continua assim! 🔥",
+    "Foco total! Cada minuto conta! ⏱️",
+    "Você consegue! Bora lá! 💪",
+    "Mandando bem! Segue o jogo! 🎯",
+    "Concentrado? Top! Não para não! 🚀",
+    "Show de bola! Tá arrasando! ⭐",
+    "Firme e forte! Produtividade ON! 💯",
   ];
 
   const breakMessages = [
-    "Ótimo trabalho! Agora é hora de relaxar e recarregar as energias.",
-    "Se hidrate e aproveite sua pausa merecida!",
-    "Pausas são essenciais para a produtividade. Aproveite este momento!",
-    "Lembre-se de respirar fundo e deixar a mente descansar.",
-    "Que tal um lanche rápido? Você merece!",
-    "Você merece este tempo para si mesmo. Aproveite cada instante!",
-    "Uma mente descansada é uma mente produtiva. Curta sua pausa!",
+    "Bora beber uma água! 💧",
+    "Hora de se alongar! 🧘",
+    "Que tal um lanchinho? 🍪",
+    "Respira fundo e relaxa! 😌",
+    "Levanta e caminha um pouco! 🚶",
+    "Descansa os olhos da tela! 👀",
+    "Café quentinho? ☕️",
+  ];
+
+  const marioLevels = [
+    "main-castle 🏰",
+    "feature/bowser-boss 🐢",
+    "develop/underground-pipes 🕳️",
+    "hotfix/turtle-shell 🐚",
+    "bugfix/broken-block 🧱",
+    "release/star-power ⭐",
+    "staging/cloud-world ☁️",
+    "feature/fire-flower 🔥",
+    "develop/warp-zone 🌀",
+    "hotfix/missing-mushroom 🍄",
+    "feature/rainbow-road 🌈",
+    "bugfix/glitchy-pipe 🔧",
+    "release/final-flagpole 🚩",
+    "develop/underwater-level 🌊",
+    "feature/koopa-fortress 🛡️",
+    "staging/peach-castle 👑",
+    "hotfix/lava-pit 🌋",
+    "feature/yoshi-island 🦖",
+    "develop/ghost-house 👻",
+    "release/world-8-4 🎮",
   ];
 
   useEffect(() => {
@@ -64,52 +96,126 @@ function App() {
   };
 
   const handleStart = () => {
+    marioStart.play().catch((error) => {
+      console.error("Error playing sound:", error);
+    });
     if (!isRunning) {
       setIsRunning(true);
     } else {
       setIsRunning(false);
-      setRemainingTime(isBreak ? 5 * 60 : 25 * 60); // Reset to 5 minutes if break, otherwise 25 minutes
+      setRemainingTime(isBreak ? 5 * 60 : 1 * 60); // Reset to 5 minutes if break, otherwise 25 minutes
     }
   };
 
   const switchMode = (breakMode: boolean) => {
+    marioCoin.play().catch((error) => {
+      console.error("Error playing sound:", error);
+    });
     setIsBreak(breakMode);
-    setRemainingTime(breakMode ? 5 * 60 : 25 * 60); // 5 minutes for break, 25 minutes for work
+    setRemainingTime(breakMode ? 5 * 60 : 1 * 60); // 5 minutes for break, 25 minutes for work
     setIsRunning(false);
+
+    // Update branch text with a random Mario level
+    const randomIndex = Math.floor(Math.random() * marioLevels.length);
+    setBranchText(marioLevels[randomIndex]);
   };
 
+  useEffect(() => {
+    if (remainingTime === 0 && isRunning) {
+      if (isBreak) {
+        marioGameOver.play().catch((error) => {
+          console.error("Error playing sound:", error);
+        });
+      }
+      if (!isBreak) {
+        marioLevelComplete.play().catch((error) => {
+          console.error("Error playing sound:", error);
+        });
+      }
+      setIsRunning(false);
+      setRemainingTime(isBreak ? 1 * 60 : 5 * 60); // Switch modes automatically
+      setIsBreak(!isBreak);
+    }
+  }, [remainingTime]);
+
   return (
-    <div style={{ position: "relative" }}>
+    <div className="main-container">
       <div>
         <button type="button" className="closeButton">
-          Fechar
+          ✕
         </button>
       </div>
+      <header className="header-container">
+        <img
+          src={require("./assets/pomodorotech.svg").default}
+          alt="PomoDoroTech"
+          height={150}
+        />
+      </header>
       <div className="main-content">
         <div className="main-controls">
           <button
             type="button"
-            className="work-btn"
+            className={`work-btn ${!isBreak ? "active-btn" : ""}`}
             onClick={() => switchMode(false)}
           >
-            Trabalhar
+            ⚡ Trabalhar
           </button>
           <button
             type="button"
-            className="break-btn"
+            className={`break-btn ${isBreak ? "active-btn" : ""}`}
             onClick={() => switchMode(true)}
           >
-            Pausa
+            ⏸ Pausa
           </button>
         </div>
-        <p className={`encouragement-text ${isRunning ? "visible" : ""}`}>
+        {/* <p className={`encouragement-text ${isRunning ? "visible" : ""}`}>
           {encouragement}
-        </p>
+        </p> */}
 
-        <div className="timer-display">{formatTime(remainingTime)}</div>
-        <button type="button" className="start-btn" onClick={handleStart}>
-          Iniciar
-        </button>
+        <div className="pomo-terminal">
+          <header className="header-window">
+            <div className="window-buttons">
+              <div className="circle-button red-background " />
+              <div className="circle-button yellow-background " />
+              <div className="circle-button green-background" />
+            </div>
+            <div className="terminal-title">
+              <span>Terminal</span>
+              <span>❯_</span>
+            </div>
+            <div style={{ width: "42px" }} />
+          </header>
+          <div className="header-path">
+            <span className="yellow-text-highlight">Dev</span>
+            <span className="purple-text-highlight">in</span>
+            <span className="blue-text-highlight">
+              {isBreak ? "break" : "work"}
+            </span>
+            <span className="purple-text-highlight">on</span>
+            <span className="pink-text-highlight"></span>
+            <span className="pink-text-highlight">{branchText}</span>
+          </div>
+          <div className="terminal-message">
+            {/* <span className="log-icon">❯</span>
+            <span className="log-text">Log</span> */}
+            <span
+              className={`terminal-log-font encouragement-text ${
+                isRunning ? "visible" : ""
+              }`}
+            >
+              <span className="log-text">❯ Log</span> {encouragement}
+            </span>
+          </div>
+        </div>
+        <div className="footer-container">
+          <div className="timer-display">{formatTime(remainingTime)}</div>
+          {!isRunning && (
+            <button type="button" className="start-btn" onClick={handleStart}>
+              ⏵ Iniciar
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );

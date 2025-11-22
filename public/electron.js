@@ -5,8 +5,8 @@ const path = require('path');
 function createMainWindow() {
     const mainWindow = new BrowserWindow({
         title: 'Pomodoro',
-        width: 800,
-        height: 600,
+        width: 500,
+        height: 500,
         webPreferences: {
             nodeIntegration: true,
             contextIsolation: false,

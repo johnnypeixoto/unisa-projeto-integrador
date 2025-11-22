@@ -15,11 +15,249 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "JetBrainsMono-Bold", monospace;
-  background-color: #1e1e1e;
+  background-color: #ffffffff;
   color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 520px;
+  height: 520px;
+  background-color: #282c34;
+}
+
+.closeButton {
+  position: absolute;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  color: #8187aaff;
+  font-size: 40px;
+  font-family: "JetBrainsMono-Bold", monospace;
+  cursor: pointer;
+}
+
+.header-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+}
+
+.main-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+  margin-bottom: 20px;
+}
+
+.work-btn {
+  width: 140px;
+  height: 40px;
+  border: 2px solid #44475a;
+  border-right: 1px solid #44475a;
+  border-radius: 5px 0px 0px 5px;
+  font-size: 16px;
+  background-color: #282c34;
+  cursor: pointer;
+  color: #f8f8f2;
+  transition: background-color 0.3s ease;
+  font-family: "JetBrainsMono-Bold", monospace;
+}
+
+.work-btn:hover {
+  background-color: #44475a4c;
+}
+
+.break-btn {
+  width: 120px;
+  height: 40px;
+  border: 2px solid #44475a;
+  border-left: 1px solid #44475a;
+  border-radius: 0px 5px 5px 0px;
+  font-size: 16px;
+  background-color: #282c34;
+  cursor: pointer;
+  color: #f8f8f2;
+  transition: background-color 0.3s ease;
+  font-family: "JetBrainsMono-Bold", monospace;
+}
+
+.break-btn:hover {
+  background-color: #44475a4c;
+}
+
+.active-btn {
+  background-color: #44475a;
+}
+
+.pomo-terminal {
+  width: 85%;
+  background-color: #1e1e1e;
+  border-radius: 5px;
+  padding: 6px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pomo-terminal div span {
+  font-weight: bold;
+}
+
+.header-window {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.window-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+.circle-button {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.terminal-title {
+  font-family: "JetBrainsMono", monospace;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.terminal-font {
+  font-family: "JetBrainsMono", monospace;
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.terminal-log-font {
+  font-family: "JetBrainsMono", monospace;
+  font-weight: 800;
+  font-size: 16px;
+  margin-top: 1px;
+}
+
+.terminal-message {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+
+.log-text {
+  color: #50fa7b;
+}
+
+.header-path {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.blue-text-highlight {
+  color: #8be9fd;
+  font-family: "JetBrainsMono-Bold", monospace;
+}
+
+.blue-background {
+  background-color: #8be9fd;
+}
+
+.purple-text-highlight {
+  color: #7e99e8;
+  font-family: "JetBrainsMono-Bold", monospace;
+}
+
+.purple-background {
+  background-color: #7e99e8;
+}
+
+.green-text-highlight {
+  color: #50fa7b;
+  font-family: "JetBrainsMono-Bold", monospace;
+}
+
+.green-background {
+  background-color: #28c840;
+}
+
+.pink-text-highlight {
+  color: #ff79c6;
+  font-family: "JetBrainsMono-Bold", monospace;
+}
+
+.pink-background {
+  background-color: #ff79c6;
+}
+
+.red-text-highlight {
+  color: #ff5555;
+  font-family: "JetBrainsMono-Bold", monospace;
+}
+
+.red-background {
+  background-color: #ff5f57;
+}
+
+.yellow-text-highlight {
+  color: #f1fa8c;
+  font-family: "JetBrainsMono-Bold", monospace;
+}
+
+.yellow-background {
+  background-color: #febc2e;
+}
+
+.timer-display {
+  font-family: "JetBrainsMono-Bold", monospace;
+  font-size: 72px;
+}
+
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  height: 100%;
+  padding-bottom: 40px;
+}
+
+.start-btn {
+  width: 120px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  background-color: #50fa7b;
+  cursor: pointer;
+  color: #282c34;
+  transition: background-color 0.3s ease;
+  font-family: "JetBrainsMono-Bold", monospace;
+}
+
+.start-btn:hover {
+  opacity: 0.9;
 }
