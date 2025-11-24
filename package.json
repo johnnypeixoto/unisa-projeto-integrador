@@ -31,6 +31,26 @@
       "react-app/jest"
     ]
   },
+     "build": {
+    "appId": "com.my-electron-app",
+    "productName": "WorkFaster",
+    "files": [
+      "build/**/*",
+      "public/electron.js"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
+  },
   "browserslist": {
     "production": [
       ">0.2%",

@@ -1,3 +1,6 @@
+/* ==================== FONTES ==================== */
+/* Definição das fontes personalizadas JetBrains Mono */
+
 @font-face {
   font-family: "JetBrainsMono-Regular";
   src: url("./assets/JetBrainsMono-Regular.otf") format("opentype");
@@ -12,16 +15,22 @@
   font-style: normal;
 }
 
+/* ==================== ESTILOS GLOBAIS ==================== */
+/* Reset e configuração base do body */
+
 body {
   margin: 0;
   padding: 0;
-  background-color: #ffffffff;
+  background-color: #ffffff;
   color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
+
+/* ==================== CONTAINER PRINCIPAL ==================== */
+/* Container principal da aplicação */
 
 .main-container {
   display: flex;
@@ -32,23 +41,28 @@ body {
   background-color: #282c34;
 }
 
+/* ==================== CABEÇALHO E NAVEGAÇÃO ==================== */
+/* Botão de fechar aplicação */
+
 .closeButton {
   position: absolute;
   right: 10px;
   background-color: transparent;
   border: none;
-  color: #8187aaff;
+  color: #8187aa;
   font-size: 40px;
   font-family: "JetBrainsMono-Bold", monospace;
   cursor: pointer;
 }
 
+/* Container do logo */
 .header-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Container do conteúdo principal */
 .main-content {
   display: flex;
   flex-direction: column;
@@ -57,20 +71,24 @@ body {
   height: 100%;
 }
 
+/* ==================== CONTROLES DE MODO ==================== */
+/* Container dos botões de modo (Trabalhar/Pausa) */
+
 .main-controls {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0px;
+  gap: 0;
   margin-bottom: 20px;
 }
 
+/* Botão do modo trabalho */
 .work-btn {
   width: 140px;
   height: 40px;
   border: 2px solid #44475a;
   border-right: 1px solid #44475a;
-  border-radius: 5px 0px 0px 5px;
+  border-radius: 5px 0 0 5px;
   font-size: 16px;
   background-color: #282c34;
   cursor: pointer;
@@ -80,15 +98,16 @@ body {
 }
 
 .work-btn:hover {
-  background-color: #44475a4c;
+  background-color: rgba(68, 71, 90, 0.3);
 }
 
+/* Botão do modo pausa */
 .break-btn {
   width: 120px;
   height: 40px;
   border: 2px solid #44475a;
   border-left: 1px solid #44475a;
-  border-radius: 0px 5px 5px 0px;
+  border-radius: 0 5px 5px 0;
   font-size: 16px;
   background-color: #282c34;
   cursor: pointer;
@@ -98,12 +117,16 @@ body {
 }
 
 .break-btn:hover {
-  background-color: #44475a4c;
+  background-color: rgba(68, 71, 90, 0.3);
 }
 
+/* Estado ativo dos botões */
 .active-btn {
   background-color: #44475a;
 }
+
+/* ==================== TERMINAL VISUAL ==================== */
+/* Container principal do terminal */
 
 .pomo-terminal {
   width: 85%;
@@ -119,6 +142,7 @@ body {
   font-weight: bold;
 }
 
+/* Cabeçalho da janela do terminal */
 .header-window {
   display: flex;
   align-items: center;
@@ -127,6 +151,7 @@ body {
   gap: 8px;
 }
 
+/* Botões decorativos da janela */
 .window-buttons {
   display: flex;
   gap: 6px;
@@ -138,6 +163,7 @@ body {
   border-radius: 50%;
 }
 
+/* Título do terminal */
 .terminal-title {
   font-family: "JetBrainsMono", monospace;
   font-size: 14px;
@@ -146,6 +172,7 @@ body {
   gap: 6px;
 }
 
+/* Fontes do terminal */
 .terminal-font {
   font-family: "JetBrainsMono", monospace;
   font-weight: 800;
@@ -159,6 +186,7 @@ body {
   margin-top: 1px;
 }
 
+/* Área de mensagens do log */
 .terminal-message {
   display: flex;
   flex-direction: row;
@@ -170,6 +198,7 @@ body {
   color: #50fa7b;
 }
 
+/* Caminho do terminal (simulando git) */
 .header-path {
   display: flex;
   flex-direction: row;
@@ -177,6 +206,10 @@ body {
   gap: 8px;
 }
 
+/* ==================== CLASSES DE CORES ==================== */
+/* Classes utilitárias para texto destacado e fundos coloridos */
+
+/* Azul */
 .blue-text-highlight {
   color: #8be9fd;
   font-family: "JetBrainsMono-Bold", monospace;
@@ -186,6 +219,7 @@ body {
   background-color: #8be9fd;
 }
 
+/* Roxo */
 .purple-text-highlight {
   color: #7e99e8;
   font-family: "JetBrainsMono-Bold", monospace;
@@ -195,6 +229,7 @@ body {
   background-color: #7e99e8;
 }
 
+/* Verde */
 .green-text-highlight {
   color: #50fa7b;
   font-family: "JetBrainsMono-Bold", monospace;
@@ -204,6 +239,7 @@ body {
   background-color: #28c840;
 }
 
+/* Rosa */
 .pink-text-highlight {
   color: #ff79c6;
   font-family: "JetBrainsMono-Bold", monospace;
@@ -213,6 +249,7 @@ body {
   background-color: #ff79c6;
 }
 
+/* Vermelho */
 .red-text-highlight {
   color: #ff5555;
   font-family: "JetBrainsMono-Bold", monospace;
@@ -222,6 +259,7 @@ body {
   background-color: #ff5f57;
 }
 
+/* Amarelo */
 .yellow-text-highlight {
   color: #f1fa8c;
   font-family: "JetBrainsMono-Bold", monospace;
@@ -231,20 +269,25 @@ body {
   background-color: #febc2e;
 }
 
+/* ==================== TIMER E RODAPÉ ==================== */
+/* Display do temporizador */
+
 .timer-display {
   font-family: "JetBrainsMono-Bold", monospace;
   font-size: 72px;
 }
 
+/* Container do rodapé */
 .footer-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: end;
+  justify-content: flex-end;
   height: 100%;
   padding-bottom: 40px;
 }
 
+/* Botão de iniciar/parar */
 .start-btn {
   width: 120px;
   height: 40px;
@@ -254,7 +297,7 @@ body {
   background-color: #50fa7b;
   cursor: pointer;
   color: #282c34;
-  transition: background-color 0.3s ease;
+  transition: opacity 0.3s ease;
   font-family: "JetBrainsMono-Bold", monospace;
 }
 
