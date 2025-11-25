@@ -1,7 +1,10 @@
 {
-  "name": "pomodoro",
+  "name": "pomodorotech",
   "version": "0.1.0",
   "private": true,
+  "main": "public/electron.js",
+  "author": "Johnny Peixoto",
+  "description": "A Pomodoro timer application built with Electron and React",
   "homepage": ".",
   "dependencies": {
     "@testing-library/dom": "^10.4.1",
@@ -23,7 +26,11 @@
     "electron": "electron public/electron.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "electron-build": "npm run build && electron-builder",
+    "electron-build:win": "npm run build && electron-builder --win",
+    "electron-build:mac": "npm run build && electron-builder --mac",
+    "electron-build:linux": "npm run build && electron-builder --linux"
   },
   "eslintConfig": {
     "extends": [
@@ -31,24 +38,51 @@
       "react-app/jest"
     ]
   },
-     "build": {
-    "appId": "com.my-electron-app",
-    "productName": "WorkFaster",
+  "build": {
+    "appId": "com.pomodorotech.app",
+    "productName": "Pomodorotech",
     "files": [
       "build/**/*",
-      "public/electron.js"
+      "public/electron.js",
+      "public/preload.js",
+      "public/icons/**/*",
+      "node_modules/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "public/icons",
+        "to": "build/icons",
+        "filter": ["**/*"]
+      }
     ],
     "directories": {
-      "buildResources": "assets"
-    },
-    "mac": {
-      "target": "dmg"
+      "buildResources": "public/icons"
     },
     "win": {
-      "target": "nsis"
+      "target": ["nsis", "portable"],
+      "icon": "public/icons/icon.ico",
+      "signAndEditExecutable": false,
+      "verifyUpdateCodeSignature": false
+    },
+    "mac": {
+      "target": "dmg",
+      "category": "public.app-category.productivity"
     },
     "linux": {
-      "target": "AppImage"
+      "target": ["AppImage", "deb"],
+      "category": "Utility"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "installerIcon": "public/icons/icon.ico",
+      "uninstallerIcon": "public/icons/icon.ico",
+      "installerHeaderIcon": "public/icons/icon.ico",
+      "deleteAppDataOnUninstall": false,
+      "runAfterFinish": true,
+      "shortcutName": "Pomodoro Timer"
     }
   },
   "browserslist": {
